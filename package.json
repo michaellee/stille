@@ -1,7 +1,7 @@
 {
   "name": "obsidian-stille",
   "version": "1.0.0",
-  "description": "A plugin to help you focus on writing.",
+  "description": "An Obsidian plugin that helps you focus on your writing.",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",

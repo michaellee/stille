@@ -80,8 +80,6 @@ export default class StillePlugin extends Plugin {
 		if(this.stilleStatus) {
 			this.addStyleToView()
 			this.statusBar.setText('Stille on');
-			this.app.workspace.leftSplit.collapse()
-			this.app.workspace.rightSplit.collapse()
 		} else {
 			this.removeStyleFromView()
 			this.statusBar.setText('Stille off');
@@ -145,7 +143,12 @@ class StilleSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', {text: 'Settings for my awesome plugin.'});
+		containerEl.createEl('h3', {text: 'Stille — Focus on your writing.'});
+		containerEl.createEl('h4', {text: 'v' + this.plugin.manifest.version})
+		containerEl.createEl('a', { text: 'Learn more about Stille', href: 'https://michaelsoolee.com/stille-obsidian-plugin/'})
+		containerEl.createEl('br');
+		containerEl.createEl('span', {text: 'If Stille has helped you focus, consider buying me a slice of pizza 🍕 '});
+		containerEl.createEl('a', {text: 'Buy Michael, a slice of pizza', href:"https://michaellee.gumroad.com/l/buy-michael-pizza"});
 
 		new Setting(containerEl)
 			.setName('Opacity level for focused text')
