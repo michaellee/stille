@@ -1,4 +1,7 @@
-/* Sets all the text color to red! */
-body {
-    color: red;
+.view-content span:not(.CodeMirror-activeline) {
+    opacity: 0.5;
+}
+
+.view-content .CodeMirror-activeline span {
+    opacity: 1;
 }
