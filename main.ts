@@ -1,22 +1,26 @@
-import { App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, Modal, Notice, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 
-interface MyPluginSettings {
+interface StillePluginSettings {
 	mySetting: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: StillePluginSettings = {
 	mySetting: 'default'
 }
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M195 125c0-26.3 5.3-51.3 14.9-74.1C118.7 73 51 155.1 51 253c0 114.8 93.2 208 208 208 97.9 0 180-67.7 202.1-158.9-22.8 9.6-47.9 14.9-74.1 14.9-106 0-192-86-192-192z"/></svg>`
+
+export default class StillePlugin extends Plugin {
+	settings: StillePluginSettings;
 
 	async onload() {
 		console.log('loading plugin');
 
 		await this.loadSettings();
 
-		this.addRibbonIcon('dice', 'Sample Plugin', () => {
+		addIcon('moon', moonIcon);
+
+		this.addRibbonIcon('moon', 'Toggle stille', () => {
 			new Notice('This is a notice!');
 		});
 
@@ -83,9 +87,9 @@ class SampleModal extends Modal {
 }
 
 class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+	plugin: StillePlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: StillePlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
