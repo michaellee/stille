@@ -31,21 +31,14 @@ export default class StillePlugin extends Plugin {
 		this.statusBar.setText('Stille on');
 
 		this.addCommand({
-			id: 'open-sample-modal',
-			name: 'Open Sample Modal',
-			// callback: () => {
-			// 	console.log('Simple Callback');
-			// },
-			checkCallback: (checking: boolean) => {
-				let leaf = this.app.workspace.activeLeaf;
-				if (leaf) {
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
-					return true;
-				}
-				return false;
-			}
+			id: 'toggleStille',
+			name: 'Toggle Stille',
+			callback: () => {
+				this.toggleStille();
+			},
+			hotkeys: [
+				{ modifiers: ["Mod","Shift"], key: "S" }
+			]
 		});
 
 		this.addSettingTab(new SampleSettingTab(this.app, this));
