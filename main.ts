@@ -12,6 +12,7 @@ const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 
 export default class StillePlugin extends Plugin {
 	settings: StillePluginSettings;
+	styleElement: HTMLElement;
 
 	async onload() {
 		console.log('loading plugin');
@@ -55,6 +56,8 @@ export default class StillePlugin extends Plugin {
 		});
 
 		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+	
+		this.addStyleToView();
 	}
 
 	onunload() {
@@ -67,6 +70,21 @@ export default class StillePlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
+	}
+	
+	addStyleToView() {
+		this.styleElement = document.createElement('style');
+		this.styleElement.id = 'stilleStyles';
+		document.head.appendChild(this.styleElement)
+		document.body.classList.add('StilleStyle')
+		this.updateStyles();
+	}
+	
+	updateStyles() {
+		this.styleElement.textContent = `body {
+																			--unfocusedLevel: 0.5;
+																			--focusedLevel: 1;
+																		}`;
 	}
 }
 
