@@ -12,7 +12,9 @@ const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 
 export default class StillePlugin extends Plugin {
 	settings: StillePluginSettings;
+	statusBar: HTMLElement;
 	styleElement: HTMLElement;
+	stilleStatus: boolean = false;
 
 	async onload() {
 		console.log('loading plugin');
@@ -21,11 +23,12 @@ export default class StillePlugin extends Plugin {
 
 		addIcon('moon', moonIcon);
 
-		this.addRibbonIcon('moon', 'Toggle stille', () => {
-			new Notice('This is a notice!');
+		this.addRibbonIcon('moon', 'Toggle Stille', () => {
+			this.toggleStille();
 		});
 
-		this.addStatusBarItem().setText('Status Bar Text');
+		this.statusBar = this.addStatusBarItem();
+		this.statusBar.setText('Stille on');
 
 		this.addCommand({
 			id: 'open-sample-modal',
@@ -56,7 +59,9 @@ export default class StillePlugin extends Plugin {
 		});
 
 		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
-	
+		
+		this.stilleStatus = true;
+		
 		this.addStyleToView();
 	}
 
@@ -72,12 +77,31 @@ export default class StillePlugin extends Plugin {
 		await this.saveData(this.settings);
 	}
 	
+	async toggleStille() {
+		this.stilleStatus = !this.stilleStatus;
+		
+		if(this.stilleStatus) {
+			this.addStyleToView()
+			this.statusBar.setText('Stille on');
+		} else {
+			this.removeStyleFromView()
+			this.statusBar.setText('Stille off');
+		}
+	}
+	
 	addStyleToView() {
 		this.styleElement = document.createElement('style');
 		this.styleElement.id = 'stilleStyles';
 		document.head.appendChild(this.styleElement)
 		document.body.classList.add('StilleStyle')
 		this.updateStyles();
+	}
+	
+	removeStyleFromView() {
+		if (this.styleElement) {
+			this.styleElement.remove()
+			document.body.removeClass('StilleStyle')
+		}
 	}
 	
 	updateStyles() {
