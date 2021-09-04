@@ -1,12 +1,14 @@
 import { App, Modal, Notice, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 
 interface StillePluginSettings {
-	stilleStatus: boolean;
+	stilleStatus: boolean,
+	focusedLevel: number;
 	unfocusedLevel: number;
 }
 
 const DEFAULT_SETTINGS: StillePluginSettings = {
 	stilleStatus: false,
+	focusedLevel: 1.0,
 	unfocusedLevel: 0.5
 }
 
@@ -102,6 +104,7 @@ export default class StillePlugin extends Plugin {
 	updateStyles() {
 		this.styleElement.textContent = `body {
 																			--unfocusedLevel: ${this.settings.unfocusedLevel};
+																			--focusedLevel: ${this.settings.focusedLevel};
 																		}`;
 	}
 	
@@ -109,23 +112,6 @@ export default class StillePlugin extends Plugin {
 		this.updateStyles();
 	}
 }
-
-class SampleModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
-
-	onOpen() {
-		let {contentEl} = this;
-		contentEl.setText('Woah!');
-	}
-
-	onClose() {
-		let {contentEl} = this;
-		contentEl.empty();
-	}
-}
-
 
 class StilleSettingTab extends PluginSettingTab {
 	plugin: StillePlugin;

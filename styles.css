@@ -1,3 +1,7 @@
 body.StilleStyle .view-content span:not(.CodeMirror-activeline) {
     opacity: var(--unfocusedLevel);
 }
+
+body.StilleStyle .view-content .CodeMirror-activeline span {
+    opacity: var(--focusedLevel);
+}
