@@ -1,14 +1,12 @@
 import { App, Modal, Notice, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 
 interface StillePluginSettings {
-	stilleStatus: boolean,
-	focusedLevel: number;
+	stilleStatus: boolean;
 	unfocusedLevel: number;
 }
 
 const DEFAULT_SETTINGS: StillePluginSettings = {
 	stilleStatus: false,
-	focusedLevel: 1.0,
 	unfocusedLevel: 0.5
 }
 
@@ -104,7 +102,6 @@ export default class StillePlugin extends Plugin {
 	updateStyles() {
 		this.styleElement.textContent = `body {
 																			--unfocusedLevel: ${this.settings.unfocusedLevel};
-																			--focusedLevel: ${this.settings.focusedLevel};
 																		}`;
 	}
 	
@@ -149,18 +146,6 @@ class StilleSettingTab extends PluginSettingTab {
 		containerEl.createEl('br');
 		containerEl.createEl('span', {text: 'If Stille has helped you focus, consider buying me a slice of pizza 🍕 '});
 		containerEl.createEl('a', {text: 'Buy Michael, a slice of pizza', href:"https://michaellee.gumroad.com/l/buy-michael-pizza"});
-
-		new Setting(containerEl)
-			.setName('Opacity level for focused text')
-			.setDesc('This is the opacity level for text that is focused. This value should be a decimal value from 0.0 to 1.0.')
-			.addText(text => text
-				.setPlaceholder('A value from 0.0 to 1.0')
-				.setValue(this.plugin.settings.focusedLevel + '')
-				.onChange(async (value) => {
-					this.plugin.settings.focusedLevel = Number(value);
-					await this.plugin.saveSettings();
-					this.plugin.refresh();
-				}));
 				
 		new Setting(containerEl)
 		.setName('Opacity level for unfocused text')
