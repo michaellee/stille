@@ -6,6 +6,20 @@ An Obsidian plugin that helps you focus on your writing, a section at a time.
 
 [Learn more about Stille.](https://michaelsoolee.com/obsidian-focus-plugin-stille/)
 
+## To develop
+
+- Clone repository
+- Run `npm i` to install dependencies
+- Run `npm run dev`
+
+## To install from repo
+
+- Follow steps above in "To develop" section
+- Instead of running `npm run dev`, you want to run `npm run build`
+- Create a folder in your vault's `.obsidian` folder called "stille"
+- Then copy and paste the `main.js`, `manifest.json` and `styles.css` files into the new stille folder
+- Activate community plugins by turning off safe mode under settings and you should now see the option to turn on Stille
+
 ## Acknowledgement
 
 [Limelight by Junegunn Choi](https://github.com/junegunn/limelight.vim)
