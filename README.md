@@ -16,7 +16,7 @@ An Obsidian plugin that helps you focus on your writing, a section at a time.
 
 - Follow steps above in "To develop" section
 - Instead of running `npm run dev`, you want to run `npm run build`
-- Create a folder in your vault's `.obsidian` folder called "stille"
+- Create a folder in your vault's `.obsidian/plugins` folder called "stille"
 - Then copy and paste the `main.js`, `manifest.json` and `styles.css` files into the new stille folder
 - Activate community plugins by turning off safe mode under settings and you should now see the option to turn on Stille
 
