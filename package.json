@@ -1,6 +1,6 @@
 {
   "name": "obsidian-stille",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Obsidian plugin that helps you focus on your writing, a section at a time.",
   "main": "main.js",
   "scripts": {
