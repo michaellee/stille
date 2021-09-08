@@ -1,14 +1,10 @@
 import { App, Modal, Notice, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 
 interface StillePluginSettings {
-	stilleStatus: boolean,
-	focusedLevel: number;
 	unfocusedLevel: number;
 }
 
 const DEFAULT_SETTINGS: StillePluginSettings = {
-	stilleStatus: false,
-	focusedLevel: 1.0,
 	unfocusedLevel: 0.3
 }
 
@@ -44,8 +40,6 @@ export default class StillePlugin extends Plugin {
 		});
 
 		this.addSettingTab(new StilleSettingTab(this.app, this));
-
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
 		
 		this.stilleStatus = true;
 		
@@ -55,7 +49,6 @@ export default class StillePlugin extends Plugin {
 	async onunload() {
 		this.removeStyleFromView();
 		this.statusBar.remove();
-		await this.saveSettings();
 	}
 
 	async loadSettings() {
@@ -81,29 +74,28 @@ export default class StillePlugin extends Plugin {
 	addStyleToView() {
 		this.styleElement = document.createElement('style');
 		this.styleElement.id = 'stilleStyles';
-		document.head.appendChild(this.styleElement)
-		document.body.classList.add('StilleStyle')
+		document.head.appendChild(this.styleElement);
+		document.body.classList.add('StilleStyle');
 		this.updateStyles();
 	}
 	
 	removeStyleFromView() {
 		if (this.styleElement) {
-			this.styleElement.remove()
-			document.body.removeClass('StilleStyle')
+			this.styleElement.remove();
+			this.styleElement = null;
+			document.body.removeClass('StilleStyle');
 		}
 	}
 	
 	updateStyles() {
 		this.styleElement.textContent = `body {
 																			--unfocusedLevel: ${this.settings.unfocusedLevel};
-																			--focusedLevel: ${this.settings.focusedLevel};
 																		}`;
 	}
 	
 	refresh() {
 		this.removeStyleFromView();
 		this.addStyleToView();
-		this.updateStyles();
 	}
 }
 

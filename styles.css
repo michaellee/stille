@@ -3,5 +3,5 @@ body.StilleStyle .view-content div:not(.CodeMirror-activeline) > .CodeMirror-lin
 }
 
 body.StilleStyle .view-content .CodeMirror-activeline div {
-    opacity: var(--focusedLevel);
+    opacity: 1.0;
 }
