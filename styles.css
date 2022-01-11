@@ -1,6 +1,7 @@
-body.StilleStyle .CodeMirror-lines:not(.selecting) .CodeMirror-code > :not(.CodeMirror-activeline) {
-  opacity: var(--unfocusedLevel);
+body.StilleStyle .view-content div:not(.CodeMirror-activeline) > .CodeMirror-line {
+    opacity: var(--unfocusedLevel);
 }
+
 body.StilleStyle .cm-editor.cm-focused .cm-line:not(.cm-active) {
   opacity: var(--unfocusedLevel);
 }
