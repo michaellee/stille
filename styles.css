@@ -1,11 +1,15 @@
 body.StilleStyle .view-content div:not(.CodeMirror-activeline) > .CodeMirror-line {
-    opacity: var(--unfocusedLevel);
+	opacity: var(--unfocusedLevel);
 }
 
 body.StilleStyle .cm-editor.cm-focused .cm-line:not(.cm-active) {
-  opacity: var(--unfocusedLevel);
+	opacity: var(--unfocusedLevel);
 }
 
 body.StilleStyle .view-content .CodeMirror-activeline div {
     opacity: 1.0;
+}
+
+body.StilleStyle .cm-editor:not(.cm-focused) {
+	opacity: var(--unfocusedLevel);
 }
