@@ -1,8 +1,8 @@
 {
 	"id": "obsidian-stille",
 	"name": "Stille",
-	"version": "1.0.3",
-	"minAppVersion": "0.9.12",
+	"version": "1.1.0",
+	"minAppVersion": "0.13.0",
 	"description": "Focus on your writing, a section at a time.",
 	"author": "Michael Lee",
 	"authorUrl": "https://michaelsoolee.com",

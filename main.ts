@@ -2,10 +2,12 @@ import { App, Modal, Notice, Plugin, addIcon, PluginSettingTab, Setting } from '
 
 interface StillePluginSettings {
 	unfocusedLevel: number;
+	statusBarLabel: boolean;
 }
 
 const DEFAULT_SETTINGS: StillePluginSettings = {
-	unfocusedLevel: 0.3
+	unfocusedLevel: 0.3,
+	statusBarLabel: true
 }
 
 const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M195 125c0-26.3 5.3-51.3 14.9-74.1C118.7 73 51 155.1 51 253c0 114.8 93.2 208 208 208 97.9 0 180-67.7 202.1-158.9-22.8 9.6-47.9 14.9-74.1 14.9-106 0-192-86-192-192z"/></svg>`
@@ -27,7 +29,9 @@ export default class StillePlugin extends Plugin {
 
 		this.statusBar = this.addStatusBarItem();
 		this.statusBar.setText('Stille on');
-
+		
+		this.toggleLabelDisplay(this.settings.statusBarLabel);
+		
 		this.addCommand({
 			id: 'toggleStille',
 			name: 'Toggle Stille',
@@ -93,6 +97,20 @@ export default class StillePlugin extends Plugin {
 																		}`;
 	}
 	
+	toggleLabelDisplay(value:boolean) {
+		if (value) {
+			document.body.classList.remove('StilleHideStatus');
+		} else {
+			document.body.classList.add('StilleHideStatus');
+		}
+	}
+	
+	async toggleLabel(value:boolean) {
+		this.toggleLabelDisplay(value);
+		this.settings.statusBarLabel = value;
+		await this.saveSettings();
+	}
+	
 	refresh() {
 		this.removeStyleFromView();
 		this.addStyleToView();
@@ -130,5 +148,15 @@ class StilleSettingTab extends PluginSettingTab {
 				await this.plugin.saveSettings();
 				this.plugin.refresh();
 			}));
+			
+		new Setting(containerEl)
+			.setName('Toggle status bar label')
+			.setDesc('Use this to toggle the visibility of the status bar label for Stille.')
+			.addToggle(barStatus => barStatus
+				.setValue(this.plugin.settings.statusBarLabel)
+				.onChange(async () => {
+					await this.plugin.toggleLabel(!this.plugin.settings.statusBarLabel);
+				})
+			)
 	}
 }

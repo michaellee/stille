@@ -15,3 +15,7 @@ body.StilleStyle .cm-editor .cm-active {
 body.StilleStyle.is-mobile .cm-editor .cm-active {
 	opacity: 1.0;
 }
+
+body.StilleHideStatus .status-bar-item.plugin-obsidian-stille {
+	display: none;
+}
