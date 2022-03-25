@@ -5,11 +5,14 @@ interface StillePluginSettings {
 	statusBarLabel: boolean;
 }
 
+// Default settings values
 const DEFAULT_SETTINGS: StillePluginSettings = {
 	unfocusedLevel: 0.3,
 	statusBarLabel: true
 }
 
+// Icon for the side dock ribbon toggle for Stille
+// Icon is from the ionicons icon set https://github.com/ionic-team/ionicons/blob/main/src/svg/moon-sharp.svg
 const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M195 125c0-26.3 5.3-51.3 14.9-74.1C118.7 73 51 155.1 51 253c0 114.8 93.2 208 208 208 97.9 0 180-67.7 202.1-158.9-22.8 9.6-47.9 14.9-74.1 14.9-106 0-192-86-192-192z"/></svg>`
 
 export default class StillePlugin extends Plugin {
@@ -19,19 +22,21 @@ export default class StillePlugin extends Plugin {
 	stilleStatus: boolean = false;
 
 	async onload() {
+		// Load settings values
 		await this.loadSettings();
-
+		
+		// Add Stille toggle to ribbon
 		addIcon('moon', moonIcon);
-
 		this.addRibbonIcon('moon', 'Toggle Stille', () => {
 			this.toggleStille();
 		});
-
+		
+		// Add Stille status to status bar
 		this.statusBar = this.addStatusBarItem();
 		this.statusBar.setText('Stille on');
-		
 		this.toggleLabelDisplay(this.settings.statusBarLabel);
 		
+		// Add Stille toggle shortcut
 		this.addCommand({
 			id: 'toggleStille',
 			name: 'Toggle Stille',
@@ -42,8 +47,10 @@ export default class StillePlugin extends Plugin {
 				{ modifiers: ["Mod","Shift"], key: "S" }
 			]
 		});
-
+		
+		// Add Stille specific settings tab
 		this.addSettingTab(new StilleSettingTab(this.app, this));
+		
 		
 		this.stilleStatus = true;
 		
@@ -126,17 +133,19 @@ class StilleSettingTab extends PluginSettingTab {
 	}
 
 	display(): void {
+		
+		// 
 		let {containerEl} = this;
-
 		containerEl.empty();
-
 		containerEl.createEl('h3', {text: 'Stille — Focus on your writing.'});
-		containerEl.createEl('h4', {text: 'v' + this.plugin.manifest.version})
-		containerEl.createEl('a', { text: 'Learn more about Stille', href: 'https://michaelsoolee.com/stille-obsidian-plugin/'})
+		containerEl.createEl('h4', {text: 'v' + this.plugin.manifest.version});
+		containerEl.createEl('a', { text: 'Learn more about Stille', href: 'https://michaelsoolee.com/stille-obsidian-plugin/'});
 		containerEl.createEl('br');
 		containerEl.createEl('span', {text: 'If Stille has helped you focus, consider buying me a slice of pizza 🍕 '});
 		containerEl.createEl('a', {text: 'Buy Michael, a slice of pizza', href:"https://michaellee.gumroad.com/l/buy-michael-pizza"});
-				
+		
+		// Adds setting to control opacity of unfocused test
+		// The uses an input field and will update the unfocusedLevel settings value
 		new Setting(containerEl)
 		.setName('Opacity level for unfocused text')
 		.setDesc('This is the opacity level for text that is unfocused. This value should be a decimal value from 0.0 to 1.0.')
@@ -148,7 +157,9 @@ class StilleSettingTab extends PluginSettingTab {
 				await this.plugin.saveSettings();
 				this.plugin.refresh();
 			}));
-			
+		
+		// Adds settings option to toggle Stille's status bar label
+		// This provides a toggle which controls the settings value for the statusBarLabel
 		new Setting(containerEl)
 			.setName('Toggle status bar label')
 			.setDesc('Use this to toggle the visibility of the status bar label for Stille.')
