@@ -3,12 +3,14 @@ import { App, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 interface StillePluginSettings {
 	unfocusedLevel: number;
 	statusBarLabel: boolean;
+	unfocusTitle: boolean;
 }
 
 // Default settings values
 const DEFAULT_SETTINGS: StillePluginSettings = {
 	unfocusedLevel: 0.3,
-	statusBarLabel: true
+	statusBarLabel: true,
+	unfocusTitle: false
 }
 
 // Icon for the side dock ribbon toggle for Stille
@@ -35,6 +37,8 @@ export default class StillePlugin extends Plugin {
 		this.statusBar = this.addStatusBarItem();
 		this.statusBar.setText('Stille on');
 		this.toggleLabelDisplay(this.settings.statusBarLabel);
+
+		this.toggleDimTitle(this.settings.unfocusTitle);
 		
 		// Add Stille toggle shortcut
 		this.addCommand({
@@ -93,8 +97,9 @@ export default class StillePlugin extends Plugin {
 	removeStyleFromView() {
 		if (this.styleElement) {
 			this.styleElement.remove();
-			this.styleElement = null;
 			document.body.removeClass('StilleStyle');
+			document.body.removeClass('StilleHideStatus');
+			document.body.removeClass('StilleUnfocusTitle');
 		}
 	}
 	
@@ -111,10 +116,24 @@ export default class StillePlugin extends Plugin {
 			document.body.classList.add('StilleHideStatus');
 		}
 	}
+
+	toggleDimTitle(value:boolean) {
+		if (value) {
+			document.body.classList.add('StilleUnfocusTitle');
+		} else {
+			document.body.classList.remove('StilleUnfocusTitle');
+		}
+	}
 	
 	async toggleLabel(value:boolean) {
 		this.toggleLabelDisplay(value);
 		this.settings.statusBarLabel = value;
+		await this.saveSettings();
+	}
+
+	async toggleTitle(value:boolean) {
+		this.toggleDimTitle(value);
+		this.settings.unfocusTitle = value;
 		await this.saveSettings();
 	}
 	
@@ -166,6 +185,18 @@ class StilleSettingTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.statusBarLabel)
 				.onChange(async () => {
 					await this.plugin.toggleLabel(!this.plugin.settings.statusBarLabel);
+				})
+			)
+
+		// Adds settings option to toggle title to be dimmed
+		// This provides a toggle which controls the settings value for the statusBarLabel
+		new Setting(containerEl)
+			.setName('Dim title')
+			.setDesc('Dim the title of the note when Stille is on.')
+			.addToggle(title => title
+				.setValue(this.plugin.settings.unfocusTitle)
+				.onChange(async () => {
+					await this.plugin.toggleTitle(!this.plugin.settings.unfocusTitle);
 				})
 			)
 	}

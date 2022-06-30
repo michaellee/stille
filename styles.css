@@ -19,3 +19,11 @@ body.StilleStyle.is-mobile .cm-editor .cm-active {
 body.StilleHideStatus .status-bar-item.plugin-obsidian-stille {
 	display: none;
 }
+
+body.StilleUnfocusTitle .view-header-title {
+	opacity: var(--unfocusedLevel);
+}
+
+body.StilleUnfocusTitle .view-header-title:focus-within {
+	opacity: 1.0;
+}
