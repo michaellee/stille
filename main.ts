@@ -1,4 +1,4 @@
-import { App, Modal, Notice, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
+import { App, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 
 interface StillePluginSettings {
 	unfocusedLevel: number;
@@ -134,8 +134,7 @@ class StilleSettingTab extends PluginSettingTab {
 
 	display(): void {
 		
-		// 
-		let {containerEl} = this;
+		const {containerEl} = this;
 		containerEl.empty();
 		containerEl.createEl('h3', {text: 'Stille — Focus on your writing.'});
 		containerEl.createEl('h4', {text: 'v' + this.plugin.manifest.version});
