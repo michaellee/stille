@@ -91,6 +91,11 @@ export default class StillePlugin extends Plugin {
 		this.styleElement.id = 'stilleStyles';
 		document.head.appendChild(this.styleElement);
 		document.body.classList.add('StilleStyle');
+		const dimTitle = this.settings.unfocusTitle
+		if (dimTitle) {
+			this.toggleDimTitle(dimTitle)
+		}
+
 		this.updateStyles();
 	}
 	
