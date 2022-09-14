@@ -7,7 +7,7 @@ An Obsidian plugin that helps you focus on your writing, a section at a time.
 [Learn more about Stille.](https://michaelsoolee.com/obsidian-focus-plugin-stille/)
 
 ## Getting started
-- Once Still is installed, make sure the plugin is activated under *Community plugins > Installed plugins* in *Settings*
+- Once Stille is installed, make sure the plugin is activated under *Community plugins > Installed plugins* in *Settings*
 - Once activated, you'll a new moon-shaped icon in the left hand ribbon. This is the toggle to turn Stille on and off. You'll also see the bottom status bar, a status for Stille that indicates whether it's on or off.
 - Stille also comes with a hotkey to toggle it on or off, `command + shift + s` on macOS or `control + shift + s` on Windows.
 
