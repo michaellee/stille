@@ -162,7 +162,7 @@ class StilleSettingTab extends PluginSettingTab {
 		containerEl.empty();
 		containerEl.createEl('h3', {text: 'Stille — Focus on your writing.'});
 		containerEl.createEl('h4', {text: 'v' + this.plugin.manifest.version});
-		containerEl.createEl('a', { text: 'Learn more about Stille', href: 'https://michaelsoolee.com/stille-obsidian-plugin/'});
+		containerEl.createEl('a', { text: 'Learn more about Stille', href: 'https://michaelsoolee.com/obsidian-focus-plugin-stille/'});
 		containerEl.createEl('br');
 		containerEl.createEl('span', {text: 'If Stille has helped you focus, consider buying me a slice of pizza 🍕 '});
 		containerEl.createEl('a', {text: 'Buy Michael, a slice of pizza', href:"https://michaellee.gumroad.com/l/buy-michael-pizza"});
