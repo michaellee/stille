@@ -2,7 +2,7 @@
 
 An Obsidian plugin that helps you focus on your writing, a section at a time.
 
-![A screenshot of Stille](https://user-images.githubusercontent.com/1329644/132112401-1a581407-248a-4a99-84b5-817991710a7b.png)
+![A screenshot of Stille](https://user-images.githubusercontent.com/1329644/197059096-7a3ad259-6fc3-4471-8f0b-e28c551152eb.png)
 
 [Learn more about Stille.](https://michaelsoolee.com/obsidian-focus-plugin-stille/)
 
