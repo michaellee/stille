@@ -6,6 +6,13 @@ An Obsidian plugin that helps you focus on your writing, a section at a time.
 
 [Learn more about Stille.](https://michaelsoolee.com/obsidian-focus-plugin-stille/)
 
+## Install Stille
+You can [click on this link](https://obsidian.md/plugins?id=obsidian-stille) and it will open up Obsidian and give you the option to install Stille.
+
+Or
+
+You can install Stille from within Obsidian by going to `Settings > Community plugins` and clicking the **Browse** button under *Community plugins*. Then search for *Stille* in the search field.
+
 ## Getting started
 - Once Stille is installed, make sure the plugin is activated under *Community plugins > Installed plugins* in *Settings*
 - Once activated, you'll see a new moon-shaped icon in the left hand ribbon. This is the toggle to turn Stille on and off. You'll also see in the bottom status bar, a status for Stille that indicates whether it's on or off.
@@ -28,6 +35,11 @@ An Obsidian plugin that helps you focus on your writing, a section at a time.
 ## Acknowledgement
 
 [Limelight by Junegunn Choi](https://github.com/junegunn/limelight.vim)
+
+## Show gratitude
+If you've benefited from using [Stille for Obsidian](https://obsidian.md/plugins?id=obsidian-stille), please consider [buying me a slice of pizza](https://michaellee.gumroad.com/l/buy-michael-pizza) :pizza:
+
+It keeps me motivated to continue to support and improve Stille.
 
 ## License
 
