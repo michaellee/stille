@@ -4,7 +4,7 @@ body.StilleStyle .cm-editor.cm-focused .cm-line:not(.cm-active) {
 }
 
 /* If the editor does not have focus, then reduce opacity of contents of editor */
-body.StilleStyle .cm-editor:not(.cm-focused) .cm-line{
+body.StilleStyle .cm-editor:not(.cm-focused) .cm-line {
 	opacity: var(--unfocusedLevel);
 }
 
@@ -14,11 +14,11 @@ body.StilleStyle .cm-editor .cm-embed-block {
 }
 
 body.StilleStyle .cm-editor .cm-active {
-	opacity: 1.0;
+	opacity: 1;
 }
 
 body.StilleStyle.is-mobile .cm-editor .cm-active {
-	opacity: 1.0;
+	opacity: 1;
 }
 
 body.StilleUnfocusTitle .view-header-title {
@@ -26,7 +26,7 @@ body.StilleUnfocusTitle .view-header-title {
 }
 
 body.StilleUnfocusTitle .view-header-title:focus-within {
-	opacity: 1.0;
+	opacity: 1;
 }
 
 /* Below are v1.0 specific fixes */
@@ -36,5 +36,5 @@ body.StilleUnfocusTitle .inline-title {
 }
 
 body.StilleUnfocusTitle .inline-title:focus-within {
-	opacity: 1.0;
+	opacity: 1;
 }
