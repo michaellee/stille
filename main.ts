@@ -40,7 +40,7 @@ export default class StillePlugin extends Plugin {
 		// Add Stille status to status bar
 		this.statusBar = this.addStatusBarItem();
 		this.statusBar.setText(this.settings.statusBarLabelText);
-		this.toggleLabelDisplay(this.settings.statusBarLabel);
+		this.toggleLabelDisplay(this.settings.statusBarLabel, true);
 
 		this.toggleDimTitle(this.settings.unfocusTitle);
 		
@@ -119,11 +119,12 @@ export default class StillePlugin extends Plugin {
 																		}`;
 	}
 	
-	toggleLabelDisplay(value:boolean) {
+	toggleLabelDisplay(value:boolean, pluginOnLoad?: boolean) {
 		if (!value) {
-			this.statusBar.remove()
-		} else {
-			this.statusBar = this.addStatusBarItem()
+			this.statusBar.remove();
+		}
+		if (value && !pluginOnLoad) {
+			this.statusBar = this.addStatusBarItem();
 			this.statusBar.setText(this.settings.statusBarLabelText);
 		}
 	}
