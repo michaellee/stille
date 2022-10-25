@@ -1,8 +1,11 @@
 import { App, Plugin, addIcon, PluginSettingTab, Setting } from 'obsidian';
 
+const nameOfApplication = `Stille`;
+
 interface StillePluginSettings {
 	unfocusedLevel: number;
 	statusBarLabel: boolean;
+	statusBarLabelText: string;
 	unfocusTitle: boolean;
 }
 
@@ -10,6 +13,7 @@ interface StillePluginSettings {
 const DEFAULT_SETTINGS: StillePluginSettings = {
 	unfocusedLevel: 0.3,
 	statusBarLabel: true,
+	statusBarLabelText: `${nameOfApplication} on`,
 	unfocusTitle: false
 }
 
@@ -35,7 +39,7 @@ export default class StillePlugin extends Plugin {
 		
 		// Add Stille status to status bar
 		this.statusBar = this.addStatusBarItem();
-		this.statusBar.setText('Stille on');
+		this.statusBar.setText(this.settings.statusBarLabelText);
 		this.toggleLabelDisplay(this.settings.statusBarLabel);
 
 		this.toggleDimTitle(this.settings.unfocusTitle);
@@ -79,10 +83,12 @@ export default class StillePlugin extends Plugin {
 		
 		if(this.stilleStatus) {
 			this.addStyleToView()
-			this.statusBar.setText('Stille on');
+			this.settings.statusBarLabelText = `${nameOfApplication} on`;
+			this.statusBar.setText(this.settings.statusBarLabelText);
 		} else {
 			this.removeStyleFromView()
-			this.statusBar.setText('Stille off');
+			this.settings.statusBarLabelText = `${nameOfApplication} off`
+			this.statusBar.setText(this.settings.statusBarLabelText);
 		}
 	}
 	
@@ -118,7 +124,7 @@ export default class StillePlugin extends Plugin {
 			this.statusBar.remove()
 		} else {
 			this.statusBar = this.addStatusBarItem()
-			this.statusBar.setText('hi');
+			this.statusBar.setText(this.settings.statusBarLabelText);
 		}
 	}
 
@@ -160,13 +166,14 @@ class StilleSettingTab extends PluginSettingTab {
 		
 		const {containerEl} = this;
 		containerEl.empty();
-		containerEl.createEl('h3', {text: 'Stille — Focus on your writing.'});
+		containerEl.createEl('h3', {text: `${nameOfApplication} — Focus on your writing.`});
 		containerEl.createEl('h4', {text: 'v' + this.plugin.manifest.version});
-		containerEl.createEl('a', { text: 'Learn more about Stille', href: 'https://michaelsoolee.com/obsidian-focus-plugin-stille/'});
+		containerEl.createEl('a', { text: `Learn more about ${nameOfApplication}`, href: 'https://michaelsoolee.com/obsidian-focus-plugin-stille/'});
 		containerEl.createEl('br');
-		containerEl.createEl('span', {text: 'If Stille has helped you focus, consider buying me a slice of pizza 🍕 '});
+		containerEl.createEl('span', {text: `If ${nameOfApplication} has helped you focus, consider buying me a slice of pizza 🍕 `});
 		containerEl.createEl('a', {text: 'Buy Michael, a slice of pizza', href:"https://michaellee.gumroad.com/l/buy-michael-pizza"});
-		
+		containerEl.createEl('br');
+		containerEl.createEl('br');
 		// Adds setting to control opacity of unfocused test
 		// The uses an input field and will update the unfocusedLevel settings value
 		new Setting(containerEl)
@@ -185,7 +192,7 @@ class StilleSettingTab extends PluginSettingTab {
 		// This provides a toggle which controls the settings value for the statusBarLabel
 		new Setting(containerEl)
 			.setName('Toggle status bar label')
-			.setDesc('Use this to toggle the visibility of the status bar label for Stille.')
+			.setDesc(`Use this to toggle the visibility of the status bar label for ${nameOfApplication}.`)
 			.addToggle(barStatus => barStatus
 				.setValue(this.plugin.settings.statusBarLabel)
 				.onChange(async () => {
@@ -197,7 +204,7 @@ class StilleSettingTab extends PluginSettingTab {
 		// This provides a toggle which controls the settings value for the statusBarLabel
 		new Setting(containerEl)
 			.setName('Dim title')
-			.setDesc('Dim the title of the note when Stille is on.')
+			.setDesc(`Dim the title of the note when ${nameOfApplication} is on.`)
 			.addToggle(title => title
 				.setValue(this.plugin.settings.unfocusTitle)
 				.onChange(async () => {
