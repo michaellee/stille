@@ -103,7 +103,6 @@ export default class StillePlugin extends Plugin {
 		if (this.styleElement) {
 			this.styleElement.remove();
 			document.body.removeClass('StilleStyle');
-			document.body.removeClass('StilleHideStatus');
 			document.body.removeClass('StilleUnfocusTitle');
 		}
 	}
@@ -115,10 +114,11 @@ export default class StillePlugin extends Plugin {
 	}
 	
 	toggleLabelDisplay(value:boolean) {
-		if (value) {
-			document.body.classList.remove('StilleHideStatus');
+		if (!value) {
+			this.statusBar.remove()
 		} else {
-			document.body.classList.add('StilleHideStatus');
+			this.statusBar = this.addStatusBarItem()
+			this.statusBar.setText('hi');
 		}
 	}
 
