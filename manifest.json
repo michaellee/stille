@@ -1,10 +1,13 @@
 {
 	"id": "obsidian-stille",
 	"name": "Stille",
-	"version": "1.3.2",
+	"version": "1.3.3",
 	"minAppVersion": "0.15.0",
 	"description": "Focus on your writing, a section at a time.",
 	"author": "Michael Lee",
 	"authorUrl": "https://michaelsoolee.com",
-	"isDesktopOnly": false
+	"isDesktopOnly": false,
+	"fundingUrl": {
+		"Buy me a slice of pizza": "https://michaellee.gumroad.com/l/buy-michael-pizza"
+	}
 }
