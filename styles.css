@@ -8,6 +8,10 @@ body.StilleStyle .cm-editor:not(.cm-focused) .cm-line {
 	opacity: var(--unfocusedLevel);
 }
 
+body.StilleStyle .cm-editor .metadata-container {
+	opacity:var(--unfocusedLevel);
+}
+
 body.StilleStyle .cm-editor .internal-embed,
 body.StilleStyle .cm-editor .cm-embed-block {
 	opacity: var(--unfocusedLevel);
